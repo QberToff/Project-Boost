@@ -134,6 +134,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 534766074, guid: 6ace0503f5f5e6e44831975f9aeed05d, type: 3}
+      propertyPath: m_Mass
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 811222215694539037, guid: 6ace0503f5f5e6e44831975f9aeed05d,
         type: 3}
       propertyPath: m_RootOrder
@@ -214,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb60cbd247d1482d85c52542b3da133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thrust: 1
 --- !u!1001 &5088581823495632871
 PrefabInstance:
   m_ObjectHideFlags: 0
