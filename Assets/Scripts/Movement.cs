@@ -62,7 +62,7 @@ public class Movement : MonoBehaviour
 
     private void Thrust()
     {
-        if (thrustIsPressed)
+        if (thrustIsPressed || Input.GetKey(KeyCode.Space))
         {
             //Debug.Log("thrust");
             rb.AddRelativeForce(Vector3.up * thrust * Time.deltaTime);
@@ -82,12 +82,12 @@ public class Movement : MonoBehaviour
         rb.freezeRotation = true;
         float rotationThisFrame = rcsThrust * Time.deltaTime;
 
-        if (leftIsPressed)
+        if (leftIsPressed || Input.GetKey(KeyCode.A))
         {
 
             transform.Rotate(Vector3.back * rotationThisFrame);
         }
-        else if (rightIsPressed)
+        else if (rightIsPressed || Input.GetKey(KeyCode.D))
         {
 
             transform.Rotate(Vector3.forward * rotationThisFrame);
