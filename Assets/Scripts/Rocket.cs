@@ -62,7 +62,7 @@ public class Rocket : MonoBehaviour
         rigidBody.freezeRotation = false;
     }
 
-    private void Thrust()
+     public void Thrust()
     {
         if (Input.GetKey(KeyCode.Space))
         {
