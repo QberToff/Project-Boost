@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Rocket : MonoBehaviour
 {
 
-    // Start is called before the first frame update
+    [SerializeField] int health = 2;
     void Start()
     {
 
@@ -30,13 +30,32 @@ public class Rocket : MonoBehaviour
                 }
             case "Finished":
                 {
-
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    if (SceneManager.sceneCount == SceneManager.GetActiveScene().buildIndex)
+                    {
+                        SceneManager.LoadScene(0);
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    }    
+                   
                     break;
                 }
             default:
                 {
                     Debug.Log("Dead");
+                    
+                    if(health <= 0)
+                    {
+                        Debug.Log("Dead");
+                        SceneManager.LoadScene(0);
+                    }
+                    else
+                    {
+                        health -= 1;
+                    }
+
+
                     break;
                 }
         }

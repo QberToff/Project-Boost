@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
@@ -15,7 +16,10 @@ public class Movement : MonoBehaviour
     bool leftIsPressed;
     bool rightIsPressed;
 
-
+    //fuel config
+    [SerializeField] float fuel = 500f;
+    [SerializeField] Text text;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +30,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        text.text = fuel.ToString();
         Thrust();
         Rotate();
     }
@@ -66,6 +71,7 @@ public class Movement : MonoBehaviour
         {
             //Debug.Log("thrust");
             rb.AddRelativeForce(Vector3.up * thrust * Time.deltaTime);
+            fuel -= 1;
             if (!audioSource.isPlaying)
             {
                 audioSource.Play();
