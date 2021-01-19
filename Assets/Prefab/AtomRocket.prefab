@@ -502,7 +502,6 @@ GameObject:
   - component: {fileID: 534766073}
   - component: {fileID: 1124053643}
   - component: {fileID: 1124053642}
-  - component: {fileID: 1080591411}
   m_Layer: 0
   m_Name: AtomRocket
   m_TagString: Untagged
@@ -672,20 +671,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 1000
   rcsThrust: 150
---- !u!114 &1080591411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8854619882081110099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ae646e12209a584a9076f255b88a9c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thrust: 1000
-  rcsThrust: 150
+  fuel: 500
+  text: {fileID: 0}
+  health: 2
 --- !u!1 &8972606480291121315
 GameObject:
   m_ObjectHideFlags: 0
