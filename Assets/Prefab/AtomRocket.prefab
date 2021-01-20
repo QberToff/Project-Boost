@@ -664,16 +664,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8854619882081110099}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fb60cbd247d1482d85c52542b3da133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   thrust: 1000
   rcsThrust: 150
-  fuel: 500
-  text: {fileID: 0}
+  consumption: 0.2
+  fuelBar: {fileID: 0}
   health: 2
+  thrustSFX: {fileID: 8300000, guid: f638a1108a027ef41826d1ca45eca874, type: 3}
+  collisionSFX: {fileID: 8300000, guid: 87abe74a1c585e546bb315834bdb8430, type: 3}
+  winSFX: {fileID: 8300000, guid: 55b13d65ba7f77b418c9ddebb660c2fa, type: 3}
+  deathSFX: {fileID: 8300000, guid: c5a1cb7bae444574ba77acfd854444a1, type: 3}
 --- !u!1 &8972606480291121315
 GameObject:
   m_ObjectHideFlags: 0
