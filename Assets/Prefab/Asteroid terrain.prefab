@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 836378148102555911}
   - component: {fileID: 17033304384745903}
   m_Layer: 8
-  m_Name: Asteroid obstacle
+  m_Name: Asteroid terrain
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

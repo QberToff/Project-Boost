@@ -33,6 +33,10 @@ public class Rocket : MonoBehaviour
     [SerializeField] AudioClip deathSFX;
     AudioSource audioSource;
 
+    //Particle config
+    //[Header("Particle config")]
+    //[SerializeField] ParticleSystem thrustVFX; 
+
     enum State {Alive, Dying, Transcending }
     State state = State.Alive;
     void Start()
@@ -53,13 +57,14 @@ public class Rocket : MonoBehaviour
     {
         if (state == State.Alive)
         {
-            //text.text = fuel.ToString();
+           
             RespondToThrust();
             RespondToRotate();
         }
        
        
     }
+
 
     private void FuelCheck() // checking does player have fuel
     {
@@ -90,18 +95,14 @@ public class Rocket : MonoBehaviour
                 }
             default:
                 {
-                    
 
-                    if (health <= 0)
-                    {
-                        state = State.Dying;
-                        Die();
-                        
-                    }
-                    else
-                    {
-                        health -= 1;
-                    }
+                    health -= 1;
+                      if (health <= 0)
+                      {
+                          state = State.Dying;
+                          Die();
+
+                      }          
                     break;
                 }
         }
@@ -174,6 +175,7 @@ public class Rocket : MonoBehaviour
         else
         {
             audioSource.Stop();
+            //thrustVFX.Stop();
         }
     }
 
@@ -187,6 +189,10 @@ public class Rocket : MonoBehaviour
         {
             audioSource.PlayOneShot(thrustSFX);
         }
+        /*if (!thrustVFX.isPlaying)
+        {
+            thrustVFX.Play();
+        }*/
     }
 
     private void RespondToRotate()
@@ -216,5 +222,10 @@ public class Rocket : MonoBehaviour
         audioSource.PlayOneShot(deathSFX);
         Invoke("LoadFirstLevel", 2f);
     }
+    
 
+    public int GetHealth()
+    {
+        return health;
+    }
 }
