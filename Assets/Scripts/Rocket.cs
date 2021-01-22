@@ -124,35 +124,35 @@ public class Rocket : MonoBehaviour
 
   
 
-    public void ThrustPointerDown()
+    public void ThrustPointerDown()//thrust button down
     {
         thrustIsPressed = true;
-    }//thrust button down
+    }
 
-    public void ThrustPointerUp()
+    public void ThrustPointerUp()//thrust button up
     {
         thrustIsPressed = false;
-    }//thrust button up
+    }
 
-    public void LeftPointerDown()
+    public void LeftPointerDown()//left button down
     {
         leftIsPressed = true;
-    }//left button down
+    }
 
-    public void LeftPointerUp()
+    public void LeftPointerUp()//left button up
     {
         leftIsPressed = false;
-    }//left button up
+    }
 
-    public void RightPointerDown()
+    public void RightPointerDown()//right button down
     {
         rightIsPressed = true;
-    }//right button down
+    }
 
-    public void RightPointerUp()
+    public void RightPointerUp()//right button up
     {
         rightIsPressed = false;
-    }//right button up
+    }
 
     private void RespondToThrust()//checking input for thrust
     {
