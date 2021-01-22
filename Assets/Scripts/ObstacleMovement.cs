@@ -27,10 +27,6 @@ public class ObstacleMovement : MonoBehaviour
     {
         
         transform.position = Vector3.MoveTowards(a, b, speed * Time.deltaTime);
-        /*if(transform.position == targetPosition)
-        {
-            Debug.Log("reached");
-            //transform.position = Vector3.MoveTowards(transform.position, currentPosition, speed * Time.deltaTime);
-        }*/
+        
     }
 }

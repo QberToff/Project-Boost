@@ -36,6 +36,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] AudioClip collisionSFX;
     [SerializeField] AudioClip winSFX;
     [SerializeField] AudioClip deathSFX;
+    [SerializeField] AudioClip loseSFX;
     AudioSource audioSource;
 
     //Particle config
@@ -223,9 +224,19 @@ public class Rocket : MonoBehaviour
             Debug.Log("Dead");
             thrustVFX.Stop();
             audioSource.Stop();
-            audioSource.PlayOneShot(deathSFX);
+
+            if (health <= 0)
+            {
+                audioSource.PlayOneShot(deathSFX);
+            }
+            else if (fuel <= 0)
+            {
+                audioSource.PlayOneShot(loseSFX);
+            }
+            
+            
             StartCoroutine(FirstLevel());
-            //Invoke("LoadFirstLevel", 2f);
+
             isDead = true;
         }
 
