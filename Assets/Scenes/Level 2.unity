@@ -846,6 +846,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1689222799}
     - target: {fileID: 1124053642, guid: 6ace0503f5f5e6e44831975f9aeed05d, type: 3}
+      propertyPath: deathSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 25d2f062d5c576d4cb824a75391380f1, type: 3}
+    - target: {fileID: 1124053642, guid: 6ace0503f5f5e6e44831975f9aeed05d, type: 3}
       propertyPath: sceneLoader
       value: 
       objectReference: {fileID: 1375763988}

@@ -28,7 +28,6 @@ public class Rocket : MonoBehaviour
     [Header("Fuel config")]
     [SerializeField] float fuel = 500f;
     [SerializeField] float consumption = 0.2f;
-    bool fuelTankEmpy = false;
     float startFuel;
 
     //audio config
@@ -45,6 +44,7 @@ public class Rocket : MonoBehaviour
 
     enum State {Alive, Dying, Transcending }
     State state = State.Alive;
+    bool isDead = false;
 
     public int GetHealth()
     {
@@ -72,6 +72,10 @@ public class Rocket : MonoBehaviour
     {
         
         GameFlow();
+        if (fuel <= 0)
+        {
+            Die();
+        }
     }
 
     private void GameFlow()//method for checking is player Alive
@@ -214,13 +218,17 @@ public class Rocket : MonoBehaviour
 
     private void Die()//method which load first level, when Player lost
     {
-        
-        Debug.Log("Dead");
-        thrustVFX.Stop();
-        audioSource.Stop();
-        audioSource.PlayOneShot(deathSFX);
-        StartCoroutine(FirstLevel());
-        //Invoke("LoadFirstLevel", 2f);
+        if (!isDead)
+        {
+            Debug.Log("Dead");
+            thrustVFX.Stop();
+            audioSource.Stop();
+            audioSource.PlayOneShot(deathSFX);
+            StartCoroutine(FirstLevel());
+            //Invoke("LoadFirstLevel", 2f);
+            isDead = true;
+        }
+
     }
 
     private void Win()
