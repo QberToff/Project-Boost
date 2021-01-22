@@ -748,5 +748,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startFuel: 500
-  fuel: 500
+  rocket: {fileID: 0}
   fuelbar: {fileID: 8637389935598928629}

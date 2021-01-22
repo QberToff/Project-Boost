@@ -19,4 +19,18 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
+
+    
+    public void LoadNextScnene()
+    {
+        if (SceneManager.sceneCount == SceneManager.GetActiveScene().buildIndex)
+        {
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
+
 }

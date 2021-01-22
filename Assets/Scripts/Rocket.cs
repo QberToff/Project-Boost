@@ -9,6 +9,7 @@ public class Rocket : MonoBehaviour
 {
     //cashed references
     Rigidbody rb;
+    [SerializeField] SceneLoader sceneLoader;
 
 
     //movement config
@@ -21,9 +22,14 @@ public class Rocket : MonoBehaviour
 
     //rocket config
     [Header("Rocket Config")]
-    [SerializeField] float consumption = 0.2f;
-    [SerializeField] FuelbarController fuelBar;
     [SerializeField] int health = 2;
+
+    //fuel config
+    [Header("Fuel config")]
+    [SerializeField] float fuel = 500f;
+    [SerializeField] float consumption = 0.2f;
+    bool fuelTankEmpy = false;
+    float startFuel;
 
     //audio config
     [Header("Audio Config")]
@@ -34,22 +40,37 @@ public class Rocket : MonoBehaviour
     AudioSource audioSource;
 
     //Particle config
-    //[Header("Particle config")]
-    //[SerializeField] ParticleSystem thrustVFX; 
+    [Header("Particle config")]
+    [SerializeField] ParticleSystem thrustVFX; 
 
     enum State {Alive, Dying, Transcending }
     State state = State.Alive;
+
+    public int GetHealth()
+    {
+        return health;
+    }
+    public float GetFuel()
+    {
+        return fuel;
+    }
+    public float GetStartFuel()
+    {
+        return startFuel;
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        startFuel = fuel;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        FuelCheck();
+        
         GameFlow();
     }
 
@@ -66,16 +87,7 @@ public class Rocket : MonoBehaviour
     }
 
 
-    private void FuelCheck() // checking does player have fuel
-    {
-        if (fuelBar.GetFuel() <= 0)
-        {
-            Debug.Log("fuel end");
-            state = State.Dying;
-        }
-    }
-
-
+ 
     private void OnCollisionEnter(Collision collision)
     {
         audioSource.PlayOneShot(collisionSFX);
@@ -108,94 +120,58 @@ public class Rocket : MonoBehaviour
         }
     }
 
-    private void Win()
-    {
-        Debug.Log("Win");
-        state = State.Transcending;
-        audioSource.Stop();
-        audioSource.PlayOneShot(winSFX);
-        Invoke("LoadNextScnene", 4f);
-    }
+    
 
-    private void LoadFirstLevel()
-    {
-       
-            SceneManager.LoadScene(0);
-        
-    }
-
-    private void LoadNextScnene()
-    {
-        if (SceneManager.sceneCount == SceneManager.GetActiveScene().buildIndex)
-        {
-            SceneManager.LoadScene(0);
-        }
-        else
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-    }
+  
 
     public void ThrustPointerDown()
     {
         thrustIsPressed = true;
-    }
+    }//thrust button down
 
     public void ThrustPointerUp()
     {
         thrustIsPressed = false;
-    }
+    }//thrust button up
 
     public void LeftPointerDown()
     {
         leftIsPressed = true;
-    }
+    }//left button down
 
     public void LeftPointerUp()
     {
         leftIsPressed = false;
-    }
+    }//left button up
 
     public void RightPointerDown()
     {
         rightIsPressed = true;
-    }
+    }//right button down
 
     public void RightPointerUp()
     {
         rightIsPressed = false;
-    }
+    }//right button up
 
     private void RespondToThrust()//checking input for thrust
     {
-        if (thrustIsPressed || Input.GetKey(KeyCode.Space))
+        if (fuel > 0)
         {
-            Thrust();
+            if (thrustIsPressed || Input.GetKey(KeyCode.Space))
+            {
+                Thrust();
+            }
+            else
+            {
+                audioSource.Stop();
+                thrustVFX.Stop();
+            }
         }
-        else
-        {
-            audioSource.Stop();
-            //thrustVFX.Stop();
-        }
+        
     }
 
-    private void Thrust()/*by calling this method player could fly rocket 
-                          * in upwards direction, also thrustSFX playing*/
-    {
-        //Debug.Log("thrust");
-        fuelBar.FuelCountAndDisplay(consumption);
-        rb.AddRelativeForce(Vector3.up * thrust * Time.deltaTime);
-        if (!audioSource.isPlaying)
-        {
-            audioSource.PlayOneShot(thrustSFX);
-        }
-        /*if (!thrustVFX.isPlaying)
-        {
-            thrustVFX.Play();
-        }*/
-    }
-
-    private void RespondToRotate()
+    private void RespondToRotate()//checking input for rotate
     {
         rb.freezeRotation = true;
         float rotationThisFrame = rcsThrust * Time.deltaTime;
@@ -214,18 +190,62 @@ public class Rocket : MonoBehaviour
         rb.freezeRotation = false;
     }
 
+    private void Thrust()/*by calling this method player could fly rocket 
+                          * in upwards direction, also thrustSFX playing*/
+    {
+        
+        FuelCount();
+        rb.AddRelativeForce(Vector3.up * thrust * Time.deltaTime);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(thrustSFX);
+        }
+        if (!thrustVFX.isPlaying)
+        {
+            thrustVFX.Play();
+        }
+    }
+
+    private void FuelCount()
+    {
+        fuel -= consumption;
+    }
+   
+
     private void Die()//method which load first level, when Player lost
     {
         
         Debug.Log("Dead");
+        thrustVFX.Stop();
         audioSource.Stop();
         audioSource.PlayOneShot(deathSFX);
-        Invoke("LoadFirstLevel", 2f);
+        StartCoroutine(FirstLevel());
+        //Invoke("LoadFirstLevel", 2f);
+    }
+
+    private void Win()
+    {
+        Debug.Log("Win");
+        state = State.Transcending;
+        audioSource.Stop();
+        audioSource.PlayOneShot(winSFX);
+        StartCoroutine(NextLevel());
+        //Invoke("LoadNextScnene", 4f);
+    }
+
+
+
+   IEnumerator FirstLevel()
+    {
+        yield return new WaitForSeconds(4f);
+        sceneLoader.LoadFirstLevel();
+
     }
     
-
-    public int GetHealth()
+    IEnumerator NextLevel()
     {
-        return health;
+        yield return new WaitForSeconds(4f);
+        sceneLoader.LoadNextScnene();
     }
+
 }

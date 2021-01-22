@@ -6,21 +6,21 @@ using UnityEngine.UI;
 public class FuelbarController : MonoBehaviour
 {
     [SerializeField] float startFuel;
-    [SerializeField] float fuel;
+    [SerializeField] Rocket rocket;
     [SerializeField] Image fuelbar;
     //float testValue = 0.5f;
 
-    
-    public void FuelCountAndDisplay(float thrusting)
+    private void Start()
     {
-        fuel -= thrusting;
-        fuelbar.fillAmount =  fuel/startFuel;
+        startFuel = rocket.GetStartFuel();
+    }
+    public void Update()
+    {
+        
+        fuelbar.fillAmount = rocket.GetFuel() / startFuel;
     }
 
 
-    public float GetFuel()
-    {
-        return fuel;
-    }
+   
 
 }
