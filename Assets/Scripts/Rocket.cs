@@ -7,6 +7,8 @@ using System;
 
 public class Rocket : MonoBehaviour
 {
+    [SerializeField] float loadDelay = 3f;
+    
     //cashed references
     Rigidbody rb;
     [SerializeField] SceneLoader sceneLoader;
@@ -247,6 +249,7 @@ public class Rocket : MonoBehaviour
         Debug.Log("Win");
         state = State.Transcending;
         audioSource.Stop();
+        thrustVFX.Stop(); 
         audioSource.PlayOneShot(winSFX);
         StartCoroutine(NextLevel());
         //Invoke("LoadNextScnene", 4f);
@@ -256,14 +259,14 @@ public class Rocket : MonoBehaviour
 
    IEnumerator FirstLevel()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(loadDelay);
         sceneLoader.LoadFirstLevel();
 
     }
     
     IEnumerator NextLevel()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(loadDelay);
         sceneLoader.LoadNextScnene();
     }
 
