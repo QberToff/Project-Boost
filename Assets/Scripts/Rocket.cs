@@ -125,11 +125,27 @@ public class Rocket : MonoBehaviour
                     break;
                 }
         }
+
+       
+
+        
+        
     }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        FuelDelear fuelDealer = other.gameObject.GetComponent<FuelDelear>();
 
-  
+        if (fuelDealer)
+        {
+           fuel += fuelDealer.AddingFuel();
+           Debug.Log("We added fuel, total = " + fuel);
+            fuelDealer.Die();
+        }
+    }
+
+
+
 
     public void ThrustPointerDown()//thrust button down
     {
