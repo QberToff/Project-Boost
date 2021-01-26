@@ -39,6 +39,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] AudioClip winSFX;
     [SerializeField] AudioClip deathSFX;
     [SerializeField] AudioClip loseSFX;
+    [SerializeField] AudioClip fuelPickUpSFX;
     AudioSource audioSource;
 
     //Particle config
@@ -140,7 +141,8 @@ public class Rocket : MonoBehaviour
         {
            fuel += fuelDealer.AddingFuel();
            Debug.Log("We added fuel, total = " + fuel);
-            fuelDealer.Die();
+           AudioSource.PlayClipAtPoint(fuelPickUpSFX, Camera.main.transform.position);
+           fuelDealer.Die();
         }
     }
 

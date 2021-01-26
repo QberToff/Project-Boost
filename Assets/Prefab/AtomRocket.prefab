@@ -5425,6 +5425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb60cbd247d1482d85c52542b3da133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadDelay: 3
   sceneLoader: {fileID: 0}
   thrust: 1000
   rcsThrust: 150
@@ -5436,6 +5437,7 @@ MonoBehaviour:
   winSFX: {fileID: 8300000, guid: 55b13d65ba7f77b418c9ddebb660c2fa, type: 3}
   deathSFX: {fileID: 8300000, guid: c5a1cb7bae444574ba77acfd854444a1, type: 3}
   loseSFX: {fileID: 8300000, guid: 87b4f9c3d765ac6408b6e8d4cee6d08e, type: 3}
+  fuelPickUpSFX: {fileID: 8300000, guid: f9437025cd5212e47a659864a7a86c91, type: 3}
   thrustVFX: {fileID: 1827069290}
 --- !u!114 &355721516
 MonoBehaviour:
