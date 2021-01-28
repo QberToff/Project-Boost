@@ -1275,6 +1275,10 @@ PrefabInstance:
       value: 9.38
       objectReference: {fileID: 0}
     - target: {fileID: 975634724, guid: 6a7bb80cb6dc2ed49b84ca0a1d5a56e2, type: 3}
+      propertyPath: offset.z
+      value: -35
+      objectReference: {fileID: 0}
+    - target: {fileID: 975634724, guid: 6a7bb80cb6dc2ed49b84ca0a1d5a56e2, type: 3}
       propertyPath: smoothSpeed
       value: 10
       objectReference: {fileID: 0}

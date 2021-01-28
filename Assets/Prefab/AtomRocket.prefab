@@ -5427,7 +5427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadDelay: 3
   sceneLoader: {fileID: 0}
-  thrust: 1000
+  thrust: 2000
   rcsThrust: 150
   health: 2
   fuel: 500

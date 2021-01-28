@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+
+    private void Update()
+    {
+        DebugLoadLevel();
+    }
+
+
     public void LoadFirstLevel()
     {
         SceneManager.LoadScene("Level 1");
@@ -30,6 +37,14 @@ public class SceneLoader : MonoBehaviour
         else
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
+
+    private void DebugLoadLevel()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextScnene();
         }
     }
 

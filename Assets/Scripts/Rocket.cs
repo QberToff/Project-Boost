@@ -49,6 +49,7 @@ public class Rocket : MonoBehaviour
     enum State {Alive, Dying, Transcending }
     State state = State.Alive;
     bool isDead = false;
+   
 
     public int GetHealth()
     {
@@ -110,12 +111,13 @@ public class Rocket : MonoBehaviour
                 }
             case "Finished":
                 {
+                    
                     Win();
                     break;
                 }
             default:
                 {
-
+                   
                     health -= 1;
                       if (health <= 0)
                       {
@@ -244,10 +246,12 @@ public class Rocket : MonoBehaviour
             Debug.Log("Dead");
             thrustVFX.Stop();
             audioSource.Stop();
+            
 
             if (health <= 0)
             {
                 audioSource.PlayOneShot(deathSFX);
+               
             }
             else if (fuel <= 0)
             {

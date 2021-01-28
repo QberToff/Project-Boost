@@ -58,7 +58,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 57.67911
+  field of view: 72.69341
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -97,5 +97,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  smoothSpeed: 0
-  offset: {x: 35, y: 15, z: -40}
+  smoothSpeed: 10
+  offset: {x: 25, y: 15, z: -80}
