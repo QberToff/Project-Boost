@@ -12,6 +12,7 @@ public class Rocket : MonoBehaviour
     //cashed references
     Rigidbody rb;
     [SerializeField] SceneLoader sceneLoader;
+    Collider collider;
 
 
     //movement config
@@ -69,13 +70,15 @@ public class Rocket : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         startFuel = fuel;
+        collider = GetComponent<CapsuleCollider>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+        DebugCollider();
         GameFlow();
         if (fuel <= 0)
         {
@@ -291,5 +294,13 @@ public class Rocket : MonoBehaviour
         yield return new WaitForSeconds(loadDelay);
         sceneLoader.LoadNextScnene();
     }
+
+    private void DebugCollider()
+    {
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            collider.enabled = !collider.enabled;
+        }
+    }    
 
 }
