@@ -10,6 +10,7 @@ public class FuelbarController : MonoBehaviour
     [SerializeField] Image fuelbar;
     [SerializeField] Text text;
     [SerializeField] Text textValue;
+    [SerializeField] Text textBar;
     [SerializeField] Slider slider;
     //float testValue = 0.5f;
 
@@ -25,6 +26,7 @@ public class FuelbarController : MonoBehaviour
         fuelbar.fillAmount = rocket.GetFuel() / startFuel;
         text.text = rocket.GetFuel().ToString();
         textValue.text = slider.value.ToString();
+        textBar.text = fuelbar.fillAmount.ToString();
 
     }
 
