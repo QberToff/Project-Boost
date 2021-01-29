@@ -31,7 +31,7 @@ public class Rocket : MonoBehaviour
     [Header("Fuel config")]
     [SerializeField] float fuel = 500f;
     [SerializeField] float consumption = 0.2f;
-    float startFuel;
+    [SerializeField] FuelbarController fuelContr;
 
     //audio config
     [Header("Audio Config")]
@@ -60,16 +60,13 @@ public class Rocket : MonoBehaviour
     {
         return fuel;
     }
-    public float GetStartFuel()
-    {
-        return startFuel;
-    }
+   
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
-        startFuel = fuel;
+        fuelContr.SetMaxValue(fuel);
         collider = GetComponent<CapsuleCollider>();
 
     }
@@ -138,7 +135,7 @@ public class Rocket : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+   private void OnTriggerEnter(Collider other)
     {
         FuelDelear fuelDealer = other.gameObject.GetComponent<FuelDelear>();
 
@@ -239,6 +236,7 @@ public class Rocket : MonoBehaviour
     private void FuelCount()
     {
         fuel -= consumption;
+        fuelContr.ChangeFuelValue(fuel);
     }
    
 

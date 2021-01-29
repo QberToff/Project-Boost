@@ -5,29 +5,22 @@ using UnityEngine.UI;
 
 public class FuelbarController : MonoBehaviour
 {
-    [SerializeField] float startFuel;
-    [SerializeField] Rocket rocket;
-    [SerializeField] Image fuelbar;
     [SerializeField] Text text;
     [SerializeField] Text textValue;
-    [SerializeField] Text textBar;
     [SerializeField] Slider slider;
-    //float testValue = 0.5f;
+   
 
-    private void Start()
+    
+    public void SetMaxValue(float value)
     {
-        startFuel = rocket.GetStartFuel();
-        slider.maxValue = startFuel;
-    }
-    public void Update()
-    {
-
-        slider.value = rocket.GetFuel();
-        fuelbar.fillAmount = rocket.GetFuel() / startFuel;
-        text.text = rocket.GetFuel().ToString();
+        slider.maxValue = value;
+        slider.value = slider.maxValue;
         textValue.text = slider.value.ToString();
-        textBar.text = fuelbar.fillAmount.ToString();
-
     }
 
+    public void ChangeFuelValue(float value)
+    {
+        slider.value = value;
+        textValue.text = slider.value.ToString();
+    }
 }
