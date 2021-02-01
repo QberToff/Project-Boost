@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -12,10 +13,7 @@ public class SceneLoader : MonoBehaviour
     }
 
 
-    public void LoadFirstLevel()
-    {
-        SceneManager.LoadScene("Level 1");
-    }
+   
 
     public void LoadRules()
     {
@@ -46,6 +44,26 @@ public class SceneLoader : MonoBehaviour
         {
             LoadNextScnene();
         }
+    }
+
+    public void LoadFirstLevel()
+    {
+        SceneManager.LoadScene("Level 1");
+    }
+
+    public void LoadSecondLevel()
+    {
+        SceneManager.LoadScene("Level 2");
+    }
+
+    public void LoadThirdLevel()
+    {
+        SceneManager.LoadScene("Level 3");
+    }
+
+    public void LoadFourthLevel()
+    {
+        SceneManager.LoadScene("Level 4");
     }
 
 }

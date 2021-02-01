@@ -31,7 +31,7 @@ public class Rocket : MonoBehaviour
     [Header("Fuel config")]
     [SerializeField] float fuel = 500f;
     [SerializeField] float consumption = 0.2f;
-    [SerializeField] FuelbarController fuelContr;
+    
 
     //audio config
     [Header("Audio Config")]
@@ -45,7 +45,11 @@ public class Rocket : MonoBehaviour
 
     //Particle config
     [Header("Particle config")]
-    [SerializeField] ParticleSystem thrustVFX; 
+    [SerializeField] ParticleSystem thrustVFX;
+
+    //UI config
+    [SerializeField] FuelbarController fuelContr;
+    [SerializeField] HUDController hud;
 
     enum State {Alive, Dying, Transcending }
     State state = State.Alive;
@@ -247,6 +251,7 @@ public class Rocket : MonoBehaviour
             Debug.Log("Dead");
             thrustVFX.Stop();
             audioSource.Stop();
+            hud.LoseText();
             
 
             if (health <= 0)
@@ -270,6 +275,7 @@ public class Rocket : MonoBehaviour
     private void Win()
     {
         Debug.Log("Win");
+        hud.WinText();
         state = State.Transcending;
         audioSource.Stop();
         thrustVFX.Stop(); 
