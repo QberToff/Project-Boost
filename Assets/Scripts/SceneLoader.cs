@@ -13,7 +13,10 @@ public class SceneLoader : MonoBehaviour
     }
 
 
-   
+   public void LoadLevels()
+    {
+        SceneManager.LoadScene("Levels");
+    }
 
     public void LoadRules()
     {

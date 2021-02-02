@@ -11,9 +11,10 @@ public class Rocket : MonoBehaviour
     
     //cashed references
     Rigidbody rb;
-    [SerializeField] SceneLoader sceneLoader;
-    Collider collider;
+   [SerializeField] SceneLoader sceneLoader;
 
+    
+   
 
     //movement config
     [Header("Movement Config")]
@@ -54,7 +55,8 @@ public class Rocket : MonoBehaviour
     enum State {Alive, Dying, Transcending }
     State state = State.Alive;
     bool isDead = false;
-   
+    bool collidersAreDisabled = false;
+
 
     public int GetHealth()
     {
@@ -71,7 +73,7 @@ public class Rocket : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         fuelContr.SetMaxValue(fuel);
-        collider = GetComponent<CapsuleCollider>();
+        
 
     }
 
@@ -79,12 +81,17 @@ public class Rocket : MonoBehaviour
     void Update()
     {
 
-        DebugCollider();
+        
         GameFlow();
         if (fuel <= 0)
         {
             Die();
         }
+        if(Debug.isDebugBuild)
+        {
+            DebugKeys();
+        }
+        
     }
 
     private void GameFlow()//method for checking is player Alive
@@ -104,7 +111,7 @@ public class Rocket : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         audioSource.PlayOneShot(collisionSFX);
-        if (state != State.Alive) { return; }
+        if (state != State.Alive || collidersAreDisabled) { return; }
         
         switch (collision.gameObject.tag)
         {
@@ -299,12 +306,18 @@ public class Rocket : MonoBehaviour
         sceneLoader.LoadNextScnene();
     }
 
-    private void DebugCollider()
-    {
-        if(Input.GetKeyDown(KeyCode.C))
+
+    private void DebugKeys()
+    { 
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            collider.enabled = !collider.enabled;
+            sceneLoader.LoadNextScnene();
         }
-    }    
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            collidersAreDisabled = !collidersAreDisabled;
+        }
+    }
+
 
 }
