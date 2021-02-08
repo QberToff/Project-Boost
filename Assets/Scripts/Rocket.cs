@@ -211,7 +211,7 @@ public class Rocket : MonoBehaviour
 
     private void RespondToRotate()//checking input for rotate
     {
-        rb.freezeRotation = true;
+        rb.angularVelocity = Vector3.zero;
         float rotationThisFrame = rcsThrust * Time.deltaTime;
 
         if (leftIsPressed || Input.GetKey(KeyCode.A))
@@ -225,7 +225,7 @@ public class Rocket : MonoBehaviour
             transform.Rotate(Vector3.forward * rotationThisFrame);
         }
 
-        rb.freezeRotation = false;
+        
     }
 
     private void Thrust()/*by calling this method player could fly rocket 

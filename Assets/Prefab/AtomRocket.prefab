@@ -5301,7 +5301,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 8
+  m_Constraints: 56
   m_CollisionDetection: 0
 --- !u!136 &534766073
 CapsuleCollider:
@@ -5439,6 +5439,8 @@ MonoBehaviour:
   loseSFX: {fileID: 8300000, guid: 87b4f9c3d765ac6408b6e8d4cee6d08e, type: 3}
   fuelPickUpSFX: {fileID: 8300000, guid: f9437025cd5212e47a659864a7a86c91, type: 3}
   thrustVFX: {fileID: 1827069290}
+  fuelContr: {fileID: 0}
+  hud: {fileID: 0}
 --- !u!114 &355721516
 MonoBehaviour:
   m_ObjectHideFlags: 0
